@@ -26,8 +26,8 @@ let play = prompt("Would you like to play? yes / no");
 
 
 
-if (play === "yes") {
-    let usersName = prompt("What is your name?");
+if (play === "yes" || play === "Yes") {
+    usersName = prompt("What is your name?");
     playGame();
 }
 else {
@@ -69,6 +69,6 @@ function playGame (){
     if (userWins < 3){
         playGame();
     } else {
-        console.log(`Congrats ${usersName}! You have won!`);
+        console.log(`Congrats ${usersName}! You have won with ${myHealth} health remaining!`);
     }
 }
