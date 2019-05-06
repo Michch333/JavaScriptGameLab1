@@ -17,15 +17,24 @@ game.
 2. The application logs the progress of the fight after each iteration of the loop.
 3. Hint: Save asking the user if they want to play for the last part of the code */
 
-console.log("Hello");
 let random;
 let grantHealth = 10;
 let myHealth = 40;
 let userWins = 0;
-let wantToPlay = true;
-let usersName = prompt("What is your name?");
-// getRandomNumber();
-playGame();
+let usersName;
+let play = prompt("Would you like to play? yes / no");
+
+
+
+if (play === "yes") {
+    let usersName = prompt("What is your name?");
+    playGame();
+}
+else {
+    alert("Sorry, select yes to play. Please refresh and try again.");
+}
+
+
 function resetHealth(){
     grantHealth = 10;
 }
