@@ -22,18 +22,21 @@ let grantHealth = 10;
 let myHealth = 40;
 let userWins = 0;
 let usersName;
-let play = prompt("Would you like to play? yes / no");
+let play;
+let attack;
 
 // Here's the only code that runs
-
-if (play === "yes" || play === "Yes") {
-    usersName = prompt("What is your name?");
-    playGame();
+function startGame () {
+    play = prompt("Would you like to play? yes / no");
+    if (play === "yes" || play === "Yes") {
+        usersName = prompt("What is your name?");
+        console.log(`New game, ${usersName} has ${myHealth} and Grant health is ${grantHealth}`)
+        startCombat();
+    }
+    else {
+        alert("Sorry, select yes to play. Please refresh and try again.");
+    }
 }
-else {
-    alert("Sorry, select yes to play. Please refresh and try again.");
-}
-
 // function list
 
 function resetHealth(){
@@ -42,6 +45,7 @@ function resetHealth(){
 
 function getDamage(){
     random = Math.floor(Math.random() * 5) + 1; // This returns a random number between 1 and 5.
+    console.log(random);
 }
 
 function removeHealth(){
@@ -52,24 +56,32 @@ function removeHealth(){
     console.log(`${usersName}'s health is at ${myHealth} and Grant's health is at ${grantHealth}`);
 }
 
-function playGame (){
-    console.log(`New game, ${usersName} has ${myHealth} and Grant health is ${grantHealth}`)
-    while (grantHealth > 0 && myHealth > 0) {
-        removeHealth();
-    }
-    if (grantHealth <= 0){
-        userWins ++;
-        console.log(`${usersName} has ${userWins} wins!`);
-        resetHealth();
-    }
-    if (myHealth <= 0){
-        console.log(`I'm sorry ${usersName}, Grant has defeated you!`);
-        return;
+function startCombat (){
+    attack = prompt("Would you like to attack?", "Yes / No");
+    if (attack === "yes" || attack === "Yes") {
+        while (grantHealth > 0 && myHealth > 0) {
+            removeHealth();
+        }
+        if (grantHealth <= 0){
+            userWins ++;
+            console.log(`${usersName} has ${userWins} wins!`);
+            resetHealth();
+        }
+        if (myHealth <= 0){
+            console.log(`I'm sorry ${usersName}, Grant has defeated you!`);
+            return;
 
+        }
+        if (userWins < 3){
+            startCombat();
+        } else {
+            console.log(`Congrats ${usersName}! You have won with ${myHealth} health remaining!`);
+        }
     }
-    if (userWins < 3){
-        playGame();
-    } else {
-        console.log(`Congrats ${usersName}! You have won with ${myHealth} health remaining!`);
+    else {
+        console.log(`${usersName} has decided to quit the game`);
+        return;
     }
 }
+
+startGame();
