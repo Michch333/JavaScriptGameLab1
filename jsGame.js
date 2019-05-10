@@ -25,7 +25,8 @@ let usersName;
 let play;
 let attack;
 
-// Here's the only code that runs
+// function list
+
 function startGame () {
     play = prompt("Would you like to play? yes / no");
     if (play === "yes" || play === "Yes") {
@@ -37,7 +38,6 @@ function startGame () {
         alert("Sorry, select yes to play. Please refresh and try again.");
     }
 }
-// function list
 
 function resetHealth(){
     grantHealth = 10;
@@ -45,7 +45,7 @@ function resetHealth(){
 
 function getDamage(){
     random = Math.floor(Math.random() * 5) + 1; // This returns a random number between 1 and 5.
-    console.log(random);
+    // console.log(random); Used for Debugging
 }
 
 function removeHealth(){
@@ -59,7 +59,7 @@ function removeHealth(){
 function startCombat (){
     attack = prompt("Would you like to attack?", "Yes / No");
     if (attack === "yes" || attack === "Yes") {
-        while (grantHealth > 0 && myHealth > 0) {
+        if (grantHealth > 0 && myHealth > 0) {
             removeHealth();
         }
         if (grantHealth <= 0){
@@ -83,5 +83,5 @@ function startCombat (){
         return;
     }
 }
-
+// Here's the code that runss
 startGame();
